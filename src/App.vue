@@ -2,8 +2,10 @@
   <main>
     <HeaderSection />
     <HomeSection />
-    <LinksSection />
-    <StatisticsSection />
+    <div id="grey-background-section">
+      <LinksSection />
+      <StatisticsSection />
+    </div>
     <BoostSection />
     <FooterSection />
   </main>
