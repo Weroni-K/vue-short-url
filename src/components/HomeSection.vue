@@ -7,7 +7,9 @@
           Build your brand's recognition and get detailed insights on how your
           links are performing.
         </p>
-        <button class="home-button">Get Started</button>
+        <a href="./link-shortening">
+          <button class="get-started-button">Get Started</button>
+        </a>
       </div>
     </div>
   </div>
@@ -19,6 +21,7 @@
 #home-section {
   background: url(/src/assets/icons/illustration-working.svg) right / contain
     no-repeat;
+  margin-top: 2rem;
 }
 
 h1 {
@@ -37,7 +40,7 @@ p {
   padding: 3rem 0;
 }
 
-.home-button {
+.get-started-button {
   margin-top: 2rem;
 }
 </style>

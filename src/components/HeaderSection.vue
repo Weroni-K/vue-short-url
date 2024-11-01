@@ -18,8 +18,8 @@
         </div>
       </div>
       <div class="menu-buttons">
-        <a>Login</a>
-        <button>Sign Up</button>
+        <a href="./login">Login</a>
+        <a href="./sign-up"><button class="sign-up-button">Sign Up</button></a>
       </div>
     </div>
   </div>
@@ -29,9 +29,9 @@
 import { ref } from 'vue'
 
 const menuLinks = ref([
-  { text: 'Features', url: '/features' },
-  { text: 'Pricing', url: '/pricing' },
-  { text: 'Resources', url: '/resources' },
+  { text: 'Features', url: './features' },
+  { text: 'Pricing', url: './pricing' },
+  { text: 'Resources', url: './resources' },
 ])
 </script>
 
@@ -41,7 +41,7 @@ const menuLinks = ref([
   flex-direction: row;
   max-width: 1080px;
   margin: auto;
-  padding: 48px;
+  padding: 3rem 0;
   justify-content: space-between;
   align-items: center;
 }
@@ -56,23 +56,24 @@ const menuLinks = ref([
   display: block;
 }
 
-.menu-links ul {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.menu-links li {
-  margin-right: 36px;
+.menu-links {
+  ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    margin-right: 36px;
+  }
 }
 
 .menu-links a,
 .menu-buttons a {
-  text-decoration: none;
   color: var(--color-neutral-grey-violet);
-  font-weight: 500;
+  font-weight: 700;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .menu-links a:hover,
@@ -80,9 +81,10 @@ const menuLinks = ref([
   color: var(--color-neutral-dark-violet);
 }
 
-.menu-buttons button {
+.sign-up-button {
   margin-left: 36px;
-  padding: 10px 20px;
+  padding: 8px 20px;
   color: var(--color-neutral-white);
+  font-size: 16px;
 }
 </style>

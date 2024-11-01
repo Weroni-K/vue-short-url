@@ -52,6 +52,10 @@ p {
   font-weight: 500;
 }
 
+a {
+  text-decoration: none;
+}
+
 button {
   background-color: var(--color-primary-cyan);
   border: none;
@@ -60,6 +64,7 @@ button {
   color: var(--color-neutral-white);
   font-size: 18px;
   font-weight: 700;
+  font-family: Poppins;
 }
 
 button:hover {

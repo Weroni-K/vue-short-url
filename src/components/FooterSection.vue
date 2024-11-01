@@ -47,26 +47,26 @@ const footerColumns = ref([
   {
     title: 'Features',
     links: [
-      { text: 'Link Shortening', url: '/link-shortening' },
-      { text: 'Branded Links', url: '/branded-links' },
-      { text: 'Analytics', url: '/analytics' },
+      { text: 'Link Shortening', url: './link-shortening' },
+      { text: 'Branded Links', url: './branded-links' },
+      { text: 'Analytics', url: './analytics' },
     ],
   },
   {
     title: 'Resources',
     links: [
-      { text: 'Blog', url: '/blog' },
+      { text: 'Blog', url: './blog' },
       { text: 'Developers', url: 'https://github.com/Weroni-K' },
-      { text: 'Support', url: '/support' },
+      { text: 'Support', url: './support' },
     ],
   },
   {
     title: 'Company',
     links: [
-      { text: 'About', url: '/about' },
-      { text: 'Our Team', url: '/our-team' },
-      { text: 'Careers', url: '/careers' },
-      { text: 'Contact', url: '/contact' },
+      { text: 'About', url: './about' },
+      { text: 'Our Team', url: './our-team' },
+      { text: 'Careers', url: './careers' },
+      { text: 'Contact', url: './contact' },
     ],
   },
 ])
@@ -87,6 +87,7 @@ const socialLinks = ref([
   padding: 60px 120px;
   gap: 100px;
 }
+
 .shortly-logo-footer {
   filter: invert(80%) sepia(100%) saturate(350%) hue-rotate(160deg)
     brightness(280%);
@@ -98,27 +99,24 @@ const socialLinks = ref([
   gap: 60px;
 }
 
-.info-links-column h3 {
-  margin-bottom: 24px;
-  font-size: 18px;
-}
-
-.info-links-column ul {
-  list-style: none;
-  padding: 0;
-}
-
-.info-links-column li {
-  margin-bottom: 5px;
-}
-
-.info-links-column a {
-  text-decoration: none;
-  color: var(--color-neutral-grey);
-}
-
-.info-links-column a:hover {
-  color: var(--color-primary-cyan);
+.info-links-column {
+  h3 {
+    margin-bottom: 24px;
+    font-size: 18px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    margin-bottom: 5px;
+  }
+  a {
+    color: var(--color-neutral-grey);
+  }
+  a:hover {
+    color: var(--color-primary-cyan);
+  }
 }
 
 .social-links {
