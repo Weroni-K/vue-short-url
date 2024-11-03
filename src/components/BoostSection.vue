@@ -20,4 +20,20 @@
   justify-content: space-evenly;
   color: white;
 }
+@media (max-width: 1140px) {
+}
+
+@media (max-width: 560px) {
+  #boost-section {
+    height: 300px;
+    background-image: url(/src/assets/icons/bg-boost-mobile.svg);
+    text-align: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 20px;
+  }
+  h2 {
+    font-size: 28px;
+  }
+}
 </style>

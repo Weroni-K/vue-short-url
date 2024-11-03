@@ -134,15 +134,33 @@ const socialLinks = ref([
   filter: invert(80%) sepia(100%) saturate(350%) hue-rotate(160deg)
     brightness(280%);
 }
+@media (max-width: 1140px) {
+}
 
-/* @media (max-width: 720px) {
-  .info-links-grid {
+@media (max-width: 560px) {
+  #footer-section {
     grid-template-columns: 1fr;
+    padding: 60px 12px;
+    gap: 40px;
+    text-align: center;
+  }
+  .info-links-grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 40px;
+    justify-content: center;
+    text-align: center;
+  }
+  .info-links-column {
+    h3 {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    a {
+      font-size: 14px;
+    }
   }
   .social-links {
-    flex-direction: row;
     justify-content: center;
-    margin-top: 20px;
   }
-} */
+}
 </style>
