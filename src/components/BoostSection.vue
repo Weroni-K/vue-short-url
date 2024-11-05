@@ -11,7 +11,7 @@
 
 <style scoped>
 #boost-section {
-  height: 200px;
+  height: 16rem;
   background: var(--color-primary-violet)
     url(/src/assets/icons/bg-boost-desktop.svg) no-repeat center / cover;
   display: flex;
@@ -19,8 +19,6 @@
   align-items: center;
   justify-content: space-evenly;
   color: white;
-}
-@media (max-width: 1140px) {
 }
 
 @media (max-width: 560px) {

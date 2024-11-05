@@ -1,37 +1,39 @@
 <template>
   <div id="footer-section">
-    <div class="logo">
-      <img
-        src="/src/assets/icons/logo.svg"
-        alt="Shortly logo"
-        class="shortly-logo-footer"
-      />
-    </div>
-
-    <div class="info-links-grid">
-      <div
-        v-for="(column, titleIndex) in footerColumns"
-        :key="titleIndex"
-        class="info-links-column"
-      >
-        <h3>{{ column.title }}</h3>
-        <ul>
-          <li v-for="(link, linkIndex) in column.links" :key="linkIndex">
-            <a :href="link.url">{{ link.text }}</a>
-          </li>
-        </ul>
+    <div class="footer-content">
+      <div class="logo">
+        <img
+          src="/src/assets/icons/logo.svg"
+          alt="Shortly logo"
+          class="shortly-logo-footer"
+        />
       </div>
-    </div>
-    <div class="social-links">
-      <a
-        v-for="(social, socialIndex) in socialLinks"
-        :key="socialIndex"
-        :href="social.url"
-        class="social-link"
-        target="_blank"
-      >
-        <img :src="social.logo" alt="Social media logo" class="social-icon" />
-      </a>
+
+      <div class="info-links-grid">
+        <div
+          v-for="(column, titleIndex) in footerColumns"
+          :key="titleIndex"
+          class="info-links-column"
+        >
+          <h3>{{ column.title }}</h3>
+          <ul>
+            <li v-for="(link, linkIndex) in column.links" :key="linkIndex">
+              <a :href="link.url">{{ link.text }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="social-links">
+        <a
+          v-for="(social, socialIndex) in socialLinks"
+          :key="socialIndex"
+          :href="social.url"
+          class="social-link"
+          target="_blank"
+        >
+          <img :src="social.logo" alt="Social media logo" class="social-icon" />
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -82,10 +84,15 @@ const socialLinks = ref([
 <style scoped>
 #footer-section {
   background-color: var(--color-neutral-dark-violet);
+}
+
+.footer-content {
+  max-width: 1080px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding: 60px 120px;
+  padding: 60px 0;
   gap: 100px;
+  margin: auto;
 }
 
 .shortly-logo-footer {
@@ -135,13 +142,18 @@ const socialLinks = ref([
     brightness(280%);
 }
 @media (max-width: 1140px) {
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    padding: 60px 24px;
+    gap: 40px;
+    align-items: center;
+  }
 }
 
 @media (max-width: 560px) {
   #footer-section {
     grid-template-columns: 1fr;
-    padding: 60px 12px;
-    gap: 40px;
     text-align: center;
   }
   .info-links-grid {

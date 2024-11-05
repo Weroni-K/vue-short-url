@@ -16,10 +16,11 @@
       <button id="shorten-it-button" @click="shortenLink">Shorten It!</button>
     </div>
 
-    <!-- <div class="shortened-links-box">
+    <div class="shortened-links-box">
       <p class="long-link">
         <a :href="shortenedUrl" target="_blank">https://cleanuri.com/</a>
       </p>
+      <hr class="divider" />
       <div class="shortened-link">
         <p>
           <a :href="shortenedUrl" target="_blank">https://cleanuri.com/</a>
@@ -32,12 +33,13 @@
       >
         {{ isCopied ? 'Copied!' : 'Copy' }}
       </button>
-    </div> -->
+    </div>
 
     <div class="shortened-links-box" v-if="longLink && shortenedUrl">
       <p class="long-link">
         <a :href="shortenedUrl" target="_blank">{{ longLink }}</a>
       </p>
+      <hr class="divider" />
       <p>
         <a :href="shortenedUrl" target="_blank">{{ shortenedUrl }}</a>
       </p>
@@ -140,7 +142,7 @@ function copyToClipboard() {
   background: var(--color-primary-violet)
     url(./../assets/icons/bg-shorten-desktop.svg) no-repeat center / cover;
   max-width: 1080px;
-  height: 144px;
+  height: 10.5rem;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -157,10 +159,10 @@ function copyToClipboard() {
 
 #link-input {
   width: 100%;
-  height: 52px;
+  height: 4rem;
   border-radius: 8px;
   font-family: Poppins;
-  font-size: 16px;
+  font-size: 20px;
   color: var(--color-neutral-blue);
   border: none;
   outline: none;
@@ -198,8 +200,8 @@ function copyToClipboard() {
   margin-right: 2.5rem;
   border-radius: 8px;
   padding: 14px 28px;
-  height: 52px;
-  width: 12rem;
+  height: 4rem;
+  width: 14rem;
 }
 
 .shortened-links-box {
@@ -237,6 +239,93 @@ function copyToClipboard() {
     color 0.3s ease;
   &.copied {
     background-color: var(--color-primary-violet);
+  }
+}
+.divider {
+  display: none;
+}
+@media (max-width: 1140px) {
+  #links-section {
+    margin: 3rem 24px;
+  }
+  .input-box {
+    margin-left: 1rem;
+  }
+
+  #shorten-it-button {
+    margin-right: 1rem;
+  }
+}
+
+@media (max-width: 740px) {
+  #links-section {
+    margin: 3rem auto;
+  }
+
+  .shorten-link-box {
+    background-image: url(./../assets/icons/bg-shorten-mobile.svg);
+    height: 176px;
+    flex-direction: column;
+    margin: 0 24px 24px;
+  }
+
+  .input-box {
+    margin-left: 0;
+  }
+
+  #link-input {
+    height: 48px;
+    border-radius: 6px;
+    padding-left: 12px;
+    font-size: 16px;
+  }
+
+  .error-message,
+  .success-message {
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  #shorten-it-button {
+    margin-right: 0;
+    border-radius: 6px;
+    padding: 0;
+    height: 48px;
+    width: 100%;
+    font-size: 18px;
+  }
+
+  .shortened-links-box {
+    margin-inline: 24px;
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+  .divider {
+    display: block;
+    width: calc(100% + 2rem);
+    border: none;
+    border-top: 1px solid var(--color-neutral-white);
+    margin-left: -1rem;
+  }
+
+  .long-link {
+    margin-right: auto;
+    a {
+      font-size: 16px;
+    }
+  }
+
+  .shortened-link {
+    a {
+      font-size: 16px;
+    }
+  }
+
+  #copy-button {
+    width: 100%;
   }
 }
 </style>
