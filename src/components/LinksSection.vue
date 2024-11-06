@@ -16,7 +16,7 @@
       <button id="shorten-it-button" @click="shortenLink">Shorten It!</button>
     </div>
 
-    <div class="shortened-links-box">
+    <!-- <div class="shortened-links-box">
       <p class="long-link">
         <a :href="shortenedUrl" target="_blank">https://cleanuri.com/</a>
       </p>
@@ -33,7 +33,7 @@
       >
         {{ isCopied ? 'Copied!' : 'Copy' }}
       </button>
-    </div>
+    </div> -->
 
     <div class="shortened-links-box" v-if="longLink && shortenedUrl">
       <p class="long-link">
@@ -136,6 +136,9 @@ function copyToClipboard() {
   max-width: 1080px;
   margin: 4rem auto;
   background-color: var(--color-neutral-white);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .shorten-link-box {
@@ -149,7 +152,6 @@ function copyToClipboard() {
   justify-content: space-between;
   gap: 16px;
   padding: 20px;
-  margin-bottom: 16px;
 }
 
 .input-box {
@@ -259,14 +261,13 @@ function copyToClipboard() {
 
 @media (max-width: 740px) {
   #links-section {
-    margin: 3rem auto;
+    margin: 3rem 24px;
   }
 
   .shorten-link-box {
     background-image: url(./../assets/icons/bg-shorten-mobile.svg);
     height: 176px;
     flex-direction: column;
-    margin: 0 24px 24px;
   }
 
   .input-box {
@@ -296,7 +297,6 @@ function copyToClipboard() {
   }
 
   .shortened-links-box {
-    margin-inline: 24px;
     height: 100%;
     flex-direction: column;
     align-items: flex-start;
