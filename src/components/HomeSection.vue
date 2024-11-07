@@ -7,7 +7,7 @@
           Build your brand's recognition and get detailed insights on how your
           links are performing.
         </p>
-        <a href="./link-shortening">
+        <a href="./">
           <button class="get-started-button">Get Started</button>
         </a>
       </div>

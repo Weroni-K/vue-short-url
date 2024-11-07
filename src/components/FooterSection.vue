@@ -49,26 +49,26 @@ const footerColumns = ref([
   {
     title: 'Features',
     links: [
-      { text: 'Link Shortening', url: './link-shortening' },
-      { text: 'Branded Links', url: './branded-links' },
-      { text: 'Analytics', url: './analytics' },
+      { text: 'Link Shortening', url: './' },
+      { text: 'Branded Links', url: './' },
+      { text: 'Analytics', url: './' },
     ],
   },
   {
     title: 'Resources',
     links: [
-      { text: 'Blog', url: './blog' },
+      { text: 'Blog', url: './' },
       { text: 'Developers', url: 'https://github.com/Weroni-K' },
-      { text: 'Support', url: './support' },
+      { text: 'Support', url: './' },
     ],
   },
   {
     title: 'Company',
     links: [
-      { text: 'About', url: './about' },
-      { text: 'Our Team', url: './our-team' },
-      { text: 'Careers', url: './careers' },
-      { text: 'Contact', url: './contact' },
+      { text: 'About', url: './' },
+      { text: 'Our Team', url: './' },
+      { text: 'Careers', url: './' },
+      { text: 'Contact', url: './' },
     ],
   },
 ])

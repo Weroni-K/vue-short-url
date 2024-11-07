@@ -1,7 +1,7 @@
 <template>
   <div id="boost-section">
     <h2>Boost your links today</h2>
-    <a href="./link-shortening">
+    <a href="./">
       <button class="get-started-button">Get Started</button>
     </a>
   </div>

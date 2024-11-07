@@ -26,8 +26,8 @@
         </div>
 
         <div class="menu-buttons">
-          <a href="./login">Login</a>
-          <a href="./sign-up">
+          <a href="./">Login</a>
+          <a href="./">
             <button class="sign-up-button">Sign Up</button>
           </a>
         </div>
@@ -40,9 +40,9 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const menuLinks = ref([
-  { text: 'Features', url: './features' },
-  { text: 'Pricing', url: './pricing' },
-  { text: 'Resources', url: './resources' },
+  { text: 'Features', url: './' },
+  { text: 'Pricing', url: './' },
+  { text: 'Resources', url: './' },
 ])
 
 const isMenuOpen = ref(false)
