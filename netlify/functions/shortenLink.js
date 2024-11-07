@@ -1,41 +1,57 @@
-const fetch = require('node-fetch')
+async function shortenLink() {
+  errorMessage.value = ''
 
-exports.handler = async function (event, context) {
+  if (!longLink.value) {
+    errorMessage.value = 'Please add a link'
+    setTimeout(() => {
+      errorMessage.value = ''
+    }, 4000)
+    return
+  }
+
+  const urlPattern = /^(https?:\/\/)?[\w.-]+\.[a-z]{2,}/i
+  if (!urlPattern.test(longLink.value)) {
+    errorMessage.value = 'Please add a valid link'
+    setTimeout(() => {
+      errorMessage.value = ''
+    }, 4000)
+    return
+  }
+
   try {
-    // Read the long URL from the request body
-    const { long_url } = JSON.parse(event.body)
-
-    // Ensure a valid long URL was provided
-    if (!long_url) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ error: 'No long URL provided' }),
-      }
-    }
-
-    const response = await fetch('https://cleanuri.com/api/v1/shorten', {
+    const response = await fetch('/.netlify/functions/shortenLink', {
       method: 'POST',
-      body: JSON.stringify({ long_url }),
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ long_url: longLink.value.trim() }),
     })
 
     if (!response.ok) {
-      return {
-        statusCode: response.status,
-        body: JSON.stringify({ error: 'Failed to shorten the link' }),
-      }
+      throw new Error('Error shortening the URL')
     }
 
-    const data = await response.json()
+    const result = await response.json()
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ shortened_url: data.result_url }),
+    if (result.shortened_url) {
+      shortenedUrl.value = result.shortened_url
+      successMessage.value = 'Link shortened successfully!'
+      longLink.value = ''
+      setTimeout(() => {
+        successMessage.value = ''
+      }, 4000)
+    } else {
+      errorMessage.value =
+        result.error || 'An error occurred while shortening the URL'
+      setTimeout(() => {
+        errorMessage.value = ''
+      }, 4000)
     }
   } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: 'Internal Server Error' }),
-    }
+    console.error('Failed to call backend:', error)
+    errorMessage.value = 'Failed to shorten the URL. Please try again later.'
+    setTimeout(() => {
+      errorMessage.value = ''
+    }, 4000)
   }
 }
