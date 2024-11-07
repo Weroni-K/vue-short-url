@@ -84,13 +84,16 @@ async function shortenLink() {
   }
 
   try {
-    const response = await fetch('/.netlify/functions/shortenLink', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await fetch(
+      'https://weroni-k-shortly-vue.netlify.app/.netlify/functions/shortenLink',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ long_url: longLink.value.trim() }),
       },
-      body: JSON.stringify({ long_url: longLink.value.trim() }),
-    })
+    )
 
     if (!response.ok) {
       throw new Error('Error shortening the URL')
