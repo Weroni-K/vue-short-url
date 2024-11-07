@@ -84,12 +84,12 @@ async function shortenLink() {
   }
 
   try {
-    const response = await fetch('https://cleanuri.com/api/v1/shorten', {
+    const response = await fetch('/.netlify/functions/shortenLink', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ url: longLink.value.trim() }),
+      body: JSON.stringify({ long_url: longLink.value.trim() }),
     })
 
     if (!response.ok) {
@@ -98,8 +98,8 @@ async function shortenLink() {
 
     const result = await response.json()
 
-    if (result.result_url) {
-      shortenedUrl.value = result.result_url
+    if (result.shortened_url) {
+      shortenedUrl.value = result.shortened_url
       successMessage.value = 'Link shortened successfully!'
       longLink.value = ''
       setTimeout(() => {
