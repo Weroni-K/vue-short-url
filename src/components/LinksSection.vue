@@ -16,39 +16,26 @@
       <button id="shorten-it-button" @click="shortenLink">Shorten It!</button>
     </div>
 
-    <!-- <div class="shortened-links-box">
+    <div
+      class="shortened-links-box"
+      v-for="link in shortenedLinks"
+      :key="link.id"
+    >
       <p class="long-link">
-        <a :href="shortenedUrl" target="_blank">https://cleanuri.com/</a>
+        <a :href="link.shortenedUrl" target="_blank">{{
+          truncatedLongLink(link.longLink)
+        }}</a>
       </p>
       <hr class="divider" />
-      <div class="shortened-link">
-        <p>
-          <a :href="shortenedUrl" target="_blank">https://cleanuri.com/</a>
-        </p>
-      </div>
-      <button
-        id="copy-button"
-        @click="copyToClipboard"
-        :class="{ copied: isCopied }"
-      >
-        {{ isCopied ? 'Copied!' : 'Copy' }}
-      </button>
-    </div> -->
-
-    <div class="shortened-links-box" v-if="longLink && shortenedUrl">
-      <p class="long-link">
-        <a :href="shortenedUrl" target="_blank">{{ longLink }}</a>
-      </p>
-      <hr class="divider" />
-      <p>
-        <a :href="shortenedUrl" target="_blank">{{ shortenedUrl }}</a>
+      <p class="shortened-link">
+        <a :href="link.shortenedUrl" target="_blank">{{ link.shortenedUrl }}</a>
       </p>
       <button
         id="copy-button"
-        @click="copyToClipboard"
-        :class="{ copied: isCopied }"
+        @click="copyToClipboard(link.shortenedUrl)"
+        :class="{ copied: isCopied && copiedLink === link.shortenedUrl }"
       >
-        {{ isCopied ? 'Copied!' : 'Copy' }}
+        {{ isCopied && copiedLink === link.shortenedUrl ? 'Copied!' : 'Copy' }}
       </button>
     </div>
   </div>
@@ -56,11 +43,12 @@
 
 <script setup>
 import { ref } from 'vue'
-import axios from 'axios' // Import axios
+import axios from 'axios'
 
 const longLink = ref('')
-const shortenedUrl = ref('')
+const shortenedLinks = ref([])
 const isCopied = ref(false)
+const copiedLink = ref('')
 const errorMessage = ref('')
 const successMessage = ref('')
 
@@ -85,14 +73,17 @@ async function shortenLink() {
   }
 
   try {
-    // Use axios to make a POST request
     const response = await axios.post(
       'https://weroni-k-shortly-vue.netlify.app/.netlify/functions/shortenLink',
       { longUrl: longLink.value.trim() },
     )
 
     if (response.data.shortenedUrl) {
-      shortenedUrl.value = response.data.shortenedUrl
+      shortenedLinks.value.push({
+        id: Date.now(),
+        longLink: longLink.value,
+        shortenedUrl: response.data.shortenedUrl,
+      })
       successMessage.value = 'Link shortened successfully!'
       longLink.value = ''
       setTimeout(() => {
@@ -114,11 +105,17 @@ async function shortenLink() {
   }
 }
 
-function copyToClipboard() {
-  navigator.clipboard.writeText(shortenedUrl.value).then(() => {
+const truncatedLongLink = link => {
+  return link.length > 40 ? link.slice(0, 40) + '...' : link
+}
+
+function copyToClipboard(link) {
+  navigator.clipboard.writeText(link).then(() => {
     isCopied.value = true
+    copiedLink.value = link
     setTimeout(() => {
       isCopied.value = false
+      copiedLink.value = ''
     }, 4000)
   })
 }
@@ -213,6 +210,7 @@ function copyToClipboard() {
 
 .long-link {
   margin-right: auto;
+  max-width: 40%;
   a {
     color: var(--color-neutral-blue);
   }
