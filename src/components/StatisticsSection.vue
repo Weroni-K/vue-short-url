@@ -1,22 +1,30 @@
 <template>
   <div id="statistics-section">
-    <div class="statistics-title">
-      <h2>Advanced Statistics</h2>
-      <p>
-        Track how your links are performing across the web with our advanced
-        statistics dashboard.
-      </p>
-    </div>
-
-    <div class="statistics-cards">
-      <div
-        v-for="(card, index) in statisticsCard"
-        :key="index"
-        class="statistics-card"
-      >
-        <img :src="card.img" alt="Statistics image" class="statistics-img" />
-        <h3>{{ card.title }}</h3>
-        <p>{{ card.description }}</p>
+    <div class="statistics-content">
+      <div class="statistics-title">
+        <h2>Advanced Statistics</h2>
+        <p>
+          Track how your links are performing across the web with our advanced
+          statistics dashboard.
+        </p>
+      </div>
+      <div class="cards-with-bar">
+        <hr class="bar" />
+        <div class="statistics-cards">
+          <div
+            v-for="(card, index) in statisticsCard"
+            :key="index"
+            class="statistics-card"
+          >
+            <img
+              :src="card.img"
+              alt="Statistics image"
+              class="statistics-img"
+            />
+            <h3>{{ card.title }}</h3>
+            <p>{{ card.description }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -55,10 +63,13 @@ const statisticsCard = ref([
   max-width: 1080px;
   margin: auto;
   padding: 3rem 0 12rem 0;
+}
+
+.statistics-content {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr;
-  gap: 4rem;
+  gap: 8rem;
   width: 100%;
   justify-items: center;
 }
@@ -79,66 +90,119 @@ p {
   max-width: 540px;
 }
 
+.cards-with-bar {
+  position: relative;
+}
+
 .statistics-cards {
+  position: relative;
   grid-row: 2;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
-  position: relative;
 }
 
 .statistics-card {
   background-color: white;
-  padding: 4rem 27px 34px;
+  padding: 6rem 27px 34px;
   width: 100%;
   position: relative;
   top: calc(var(--index) * 2rem);
-  text-align: center;
+  text-align: left;
+  z-index: 2;
   p {
     font-size: 15px;
-    text-align: left;
   }
   h3 {
-    text-align: left;
     font-size: 22px;
   }
 }
 
+.bar {
+  position: absolute;
+  top: 65%;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background-color: var(--color-primary-cyan);
+  border: none;
+  z-index: 1;
+}
+
 .statistics-card:nth-child(2) {
-  top: 2rem;
+  top: 3rem;
 }
 
 .statistics-card:nth-child(3) {
-  top: 4rem;
-}
-
-.statistics-card::after {
-  content: '';
-  position: absolute;
-  top: 8rem;
-  left: 100%;
-  width: 2rem;
-  height: 8px;
-  background-color: var(--color-primary-cyan);
-}
-
-.statistics-card:nth-child(2)::after {
-  top: 6rem;
-}
-
-.statistics-card:nth-child(3)::after {
-  display: none;
+  top: 5rem;
 }
 
 .statistics-img {
-  width: 80px;
+  width: 6rem;
   position: absolute;
-  padding: 20px;
+  padding: 24px;
   opacity: 1;
-  top: -40px;
+  top: -3rem;
   left: 27px;
   background-color: var(--color-primary-violet);
   border-radius: 50%;
   margin-bottom: 1.5rem;
+}
+
+@media (max-width: 1140px) {
+  #statistics-section {
+    margin: auto 24px;
+  }
+}
+
+@media (max-width: 740px) {
+  #statistics-section {
+    padding-bottom: 9rem;
+  }
+  .statistics-content {
+    gap: 6rem;
+  }
+
+  h3 {
+    margin-top: 2rem;
+  }
+
+  .statistics-title {
+    max-width: 380px;
+  }
+
+  .statistics-cards {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 4rem;
+    margin-inline: 0;
+  }
+
+  .statistics-card {
+    padding-top: 3rem;
+    text-align: center;
+  }
+
+  .bar {
+    top: 0;
+    left: calc(50% + 8px);
+    transform: translateX(-50%);
+    width: 8px;
+    height: 100%;
+  }
+
+  .statistics-card:nth-child(2) {
+    top: 2rem;
+  }
+
+  .statistics-card:nth-child(3) {
+    top: 4rem;
+  }
+
+  .statistics-img {
+    left: calc(50% - 40px);
+  }
+  p {
+    font-size: 16px;
+  }
 }
 </style>
