@@ -56,6 +56,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import axios from 'axios' // Import axios
 
 const longLink = ref('')
 const shortenedUrl = ref('')
@@ -84,25 +85,14 @@ async function shortenLink() {
   }
 
   try {
-    const response = await fetch(
+    // Use axios to make a POST request
+    const response = await axios.post(
       'https://weroni-k-shortly-vue.netlify.app/.netlify/functions/shortenLink',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ long_url: longLink.value.trim() }),
-      },
+      { longUrl: longLink.value.trim() },
     )
 
-    if (!response.ok) {
-      throw new Error('Error shortening the URL')
-    }
-
-    const result = await response.json()
-
-    if (result.shortened_url) {
-      shortenedUrl.value = result.shortened_url
+    if (response.data.shortenedUrl) {
+      shortenedUrl.value = response.data.shortenedUrl
       successMessage.value = 'Link shortened successfully!'
       longLink.value = ''
       setTimeout(() => {
@@ -110,7 +100,7 @@ async function shortenLink() {
       }, 4000)
     } else {
       errorMessage.value =
-        result.error || 'An error occurred while shortening the URL'
+        response.data.error || 'An error occurred while shortening the URL'
       setTimeout(() => {
         errorMessage.value = ''
       }, 4000)
