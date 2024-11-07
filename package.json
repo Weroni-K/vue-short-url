@@ -14,6 +14,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "node-fetch": "^3.3.2",
     "vue": "^3.5.12",
     "vue-short-url": "file:"
   },
