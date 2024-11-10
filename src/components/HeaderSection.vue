@@ -9,8 +9,15 @@
         />
       </div>
 
-      <button class="burger" @click="toggleMenu" aria-label="Toggle menu">
-        <span class="line" v-for="n in 3" :key="n"></span>
+      <button
+        class="burger"
+        @click="toggleMenu"
+        aria-label="Toggle menu"
+        :class="{ active: isMenuOpen }"
+      >
+        <span class="line-top"></span>
+        <span class="line-mid"></span>
+        <span class="line-bottom"></span>
       </button>
 
       <div
@@ -129,13 +136,36 @@ onUnmounted(() => {
   border: none;
   cursor: pointer;
   flex-direction: column;
-  gap: 6px;
-}
+  padding: 1rem;
 
-.burger .line {
-  width: 25px;
-  height: 3px;
-  background: var(--color-neutral-grey-violet);
+  span {
+    width: 25px;
+    height: 3px;
+    margin: auto;
+    background: var(--color-neutral-grey-violet);
+    transition: all 0.4s ease;
+  }
+
+  .line-top {
+    transform: translateY(-6px);
+  }
+
+  .line-bottom {
+    transform: translateY(6px);
+  }
+
+  &.active {
+    .line-top {
+      transform: translateY(3px) rotate(45deg);
+    }
+    .line-mid {
+      transform: translateX(-20px) rotate(360deg);
+      opacity: 0;
+    }
+    .line-bottom {
+      transform: translateY(-3px) rotate(-45deg);
+    }
+  }
 }
 
 @media (max-width: 1140px) {
